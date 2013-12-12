@@ -19,7 +19,6 @@ script:
 notifications:
     irc:
         channels:
-            - "irc.freenode.net#znc"
-            - "irc.shoutcast.com#znc"
+            - "irc.swiftirc.net#jordan"
         on_success: always
         on_failure: always
