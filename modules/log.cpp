@@ -70,7 +70,7 @@ private:
 
 void CLogMod::PutLog(const CString& sLine, const CString& sWindow /*= "Status"*/)
 {
-	CString sPath,sNetwork,sWindow,sUser;
+	CString sPath,sRNetwork,sRWindow,sRUser;
 	time_t curtime;
 
 	time(&curtime);
@@ -82,30 +82,30 @@ void CLogMod::PutLog(const CString& sLine, const CString& sWindow /*= "Status"*/
 		return;
 	}
 	
-	sNetwork = (m_pNetwork ? m_pNetwork->GetName() : "znc");
-	sWindow = sWindow.Replace_n("/", "-").Replace_n("\\", "-");
-	sUser = (m_pUser ? m_pUser->GetUserName() : "UNKNOWN");
+	sRNetwork = (m_pNetwork ? m_pNetwork->GetName() : "znc");
+	sRWindow = sWindow.Replace_n("/", "-").Replace_n("\\", "-");
+	sRUser = (m_pUser ? m_pUser->GetUserName() : "UNKNOWN");
 	
 	// $WINDOW has to be handled last, since it can contain %
-	sPath.Replace("$NETWORK", sNetwork);
-	sPath.Replace("$WINDOW", sWindow);
-	sPath.Replace("$USER", sUser);
+	sPath.Replace("$NETWORK", sRNetwork);
+	sPath.Replace("$WINDOW", sRWindow);
+	sPath.Replace("$USER", sRUser);
 	
 	for(int i = 0; rNetwork[i] != '\0'; i++){
-		sNetwork[i] = tolower(rNetwork[i]);
+		sRNetwork[i] = tolower(sRNetwork[i]);
 	}
 	
 	for(int i = 0; rWindow[i] != '\0'; i++){
-		sWindow[i] = tolower(rWindow[i]);
+		sRWindow[i] = tolower(sRWindow[i]);
 	}
 	
 	for(int i = 0; rUser[i] != '\0'; i++){
-		sUser[i] = tolower(rUser[i]);
+		sRUser[i] = tolower(sRUser[i]);
 	}
 
-	sPath.Replace("$LNETWORK", sNetwork);
-	sPath.Replace("$LWINDOW", sWindow);
-	sPath.Replace("$LUSER", sUser);
+	sPath.Replace("$LNETWORK", sRNetwork);
+	sPath.Replace("$LWINDOW", sRWindow);
+	sPath.Replace("$LUSER", sRUser);
 
 	// Check if it's allowed to write in this specific path
 	sPath = CDir::CheckPathPrefix(GetSavePath(), sPath);
