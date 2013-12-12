@@ -91,15 +91,15 @@ void CLogMod::PutLog(const CString& sLine, const CString& sWindow /*= "Status"*/
 	sPath.Replace("$WINDOW", sRWindow);
 	sPath.Replace("$USER", sRUser);
 	
-	for(int i = 0; rNetwork[i] != '\0'; i++){
+	for(int i = 0; sRNetwork[i] != '\0'; i++){
 		sRNetwork[i] = tolower(sRNetwork[i]);
 	}
 	
-	for(int i = 0; rWindow[i] != '\0'; i++){
+	for(int i = 0; sRWindow[i] != '\0'; i++){
 		sRWindow[i] = tolower(sRWindow[i]);
 	}
 	
-	for(int i = 0; rUser[i] != '\0'; i++){
+	for(int i = 0; sRUser[i] != '\0'; i++){
 		sRUser[i] = tolower(sRUser[i]);
 	}
 
