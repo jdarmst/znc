@@ -70,7 +70,7 @@ private:
 
 void CLogMod::PutLog(const CString& sLine, const CString& sWindow /*= "Status"*/)
 {
-	CString sPath;
+	CString sPath,sNetwork,sWindow,sUser;
 	time_t curtime;
 
 	time(&curtime);
@@ -82,9 +82,9 @@ void CLogMod::PutLog(const CString& sLine, const CString& sWindow /*= "Status"*/
 		return;
 	}
 	
-	char sNetwork = (m_pNetwork ? m_pNetwork->GetName() : "znc");
-	char sWindow = sWindow.Replace_n("/", "-").Replace_n("\\", "-");
-	char sUser = (m_pUser ? m_pUser->GetUserName() : "UNKNOWN");
+	sNetwork = (m_pNetwork ? m_pNetwork->GetName() : "znc");
+	sWindow = sWindow.Replace_n("/", "-").Replace_n("\\", "-");
+	sUser = (m_pUser ? m_pUser->GetUserName() : "UNKNOWN");
 	
 	// $WINDOW has to be handled last, since it can contain %
 	sPath.Replace("$NETWORK", sNetwork);
